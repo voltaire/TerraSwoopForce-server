@@ -8,4 +8,7 @@ RUN unzip /tsf.zip
 
 FROM amazoncorretto:8-alpine-jre
 COPY --from=builder /build /srv
-COPY --from=voltairemc/spigot-server:1.16.3 /spigot.jar /srv/spigot.jar
+COPY --from=voltairemc/spigot-server:1.11.2 /spigot.jar /srv/spigot.jar
+ADD run /srv/run
+
+CMD ["/srv/run"]
