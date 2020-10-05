@@ -9,6 +9,7 @@ RUN unzip /tsf.zip
 FROM amazoncorretto:8-alpine-jre
 COPY --from=builder /build /srv
 COPY --from=voltairemc/spigot-server:1.11.2 /spigot.jar /srv/spigot.jar
+RUN echo 'eula=true' > /srv/eula.txt
 WORKDIR /srv
 ADD run /srv/run
 
