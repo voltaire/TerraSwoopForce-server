@@ -1,4 +1,4 @@
-FROM alpine:latest AS builder
+FROM voltairemc/spigot-server:1.11.2 AS builder
 
 RUN apk add --no-cache unzip
 
@@ -8,7 +8,7 @@ RUN unzip /tsf.zip
 
 FROM amazoncorretto:8-alpine-jre
 COPY --from=builder /build /srv
-COPY --from=voltairemc/spigot-server:1.11.2 /spigot.jar /srv/spigot.jar
+COPY --from=builder /spigot.jar /srv/spigot.jar
 RUN echo 'eula=true' > /srv/eula.txt
 WORKDIR /srv
 ADD run /srv/run
